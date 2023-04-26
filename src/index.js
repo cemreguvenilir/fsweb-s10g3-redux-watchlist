@@ -5,8 +5,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import reducers from "./reducers";
+import logger from "redux-logger";
 
 import { BrowserRouter } from "react-router-dom";
 
@@ -21,7 +22,7 @@ useSelector, action, dispatch
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(logger));
 root.render(
   <Provider store={store}>
     <BrowserRouter>

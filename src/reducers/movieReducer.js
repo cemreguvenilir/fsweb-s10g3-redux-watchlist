@@ -3,6 +3,7 @@ import {
   PRE_MOVIE,
   REMOVE_MOVIE,
   BEGIN,
+  ADD_MOVIE,
 } from "../actions/movieAction";
 import { movies } from "../movies";
 
@@ -30,6 +31,16 @@ export default function movieReducer(state = initialState, action) {
       return {
         ...state,
         movies: newMovieList,
+      };
+
+    case ADD_MOVIE:
+      const copyMovies = [...state.movies];
+      const newMovie = [action.payload];
+      const copyNewMovie = [...copyMovies, newMovie];
+
+      return {
+        ...state,
+        movies: [...copyNewMovie],
       };
 
     case BEGIN:
